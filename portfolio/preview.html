@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio | Pebe Weiii</title>
+
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ============================================
+       GLOBAL STYLES — Portfolio Pebe Weiii
+       ============================================ */
+    :root {
+      --clr-bg:        #0a0c10;
+      --clr-surface:   #111420;
+      --clr-card:      #161b2e;
+      --clr-border:    #1e2640;
+      --clr-accent:    #4fffb0;
+      --clr-accent2:   #00b8ff;
+      --clr-text:      #e8eaf6;
+      --clr-muted:     #7b82a3;
+      --clr-heading:   #ffffff;
+      --font-display:  'Syne', sans-serif;
+      --font-body:     'Outfit', sans-serif;
+      --radius:        16px;
+      --transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); color: var(--clr-heading); }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--clr-bg); }
+    ::-webkit-scrollbar-thumb { background: var(--clr-border); border-radius: 3px; }
+
+    /* Subtle noise overlay */
+    body::before {
+      content:''; position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:0; opacity:0.4;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(10,12,16,0.88) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--clr-border);
+      padding: 1rem 0; z-index:1000;
+    }
+    .navbar-brand { font-family:var(--font-display); font-size:1.6rem; font-weight:800; color:var(--clr-heading)!important; letter-spacing:-1px; }
+    .brand-accent { color: var(--clr-accent); }
+    .brand-dot { display:inline-block; width:8px; height:8px; background:var(--clr-accent); border-radius:50%; margin-right:4px; animation:pulseDot 2s ease-in-out infinite; }
+    @keyframes pulseDot { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:0.6} }
+    .navbar-nav .nav-link { color:var(--clr-muted)!important; font-weight:500; font-size:0.9rem; letter-spacing:0.5px; padding:0.4rem 0.8rem!important; border-radius:8px; transition:var(--transition); }
+    .navbar-nav .nav-link:hover { color:var(--clr-accent)!important; background:rgba(79,255,176,0.07); }
+    .navbar-toggler { border:1px solid var(--clr-border)!important; padding:0.35rem 0.65rem; border-radius:8px; }
+    .navbar-toggler:focus { box-shadow:none!important; }
+    .btn-hire { background:linear-gradient(135deg,var(--clr-accent),var(--clr-accent2)); color:#000!important; font-weight:700; font-size:0.85rem; padding:0.45rem 1.3rem; border-radius:50px; border:none; transition:var(--transition); font-family:var(--font-display); }
+    .btn-hire:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(79,255,176,0.3); }
+
+    /* ── SECTION SHARED ── */
+    section { position:relative; z-index:1; }
+    .section-tag { display:inline-block; font-size:0.78rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--clr-accent); background:rgba(79,255,176,0.1); padding:0.3rem 1rem; border-radius:50px; border:1px solid rgba(79,255,176,0.2); margin-bottom:1rem; }
+    .section-title { font-size:clamp(2rem,4vw,3rem); font-weight:800; line-height:1.1; }
+    .highlight { color:var(--clr-accent); }
+    .section-header { text-align:center; }
+
+    /* ── HERO ── */
+    .hero-section { min-height:100vh; display:flex; align-items:center; background:var(--clr-bg); overflow:hidden; padding-top:80px; }
+    .hero-bg-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(79,255,176,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(79,255,176,0.04) 1px,transparent 1px); background-size:60px 60px; mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,black 40%,transparent 100%); }
+    .hero-orb { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
+    .hero-orb-1 { width:500px; height:500px; background:radial-gradient(circle,rgba(79,255,176,0.12) 0%,transparent 70%); top:-100px; left:-150px; animation:floatOrb 8s ease-in-out infinite; }
+    .hero-orb-2 { width:400px; height:400px; background:radial-gradient(circle,rgba(0,184,255,0.1) 0%,transparent 70%); bottom:0; right:-100px; animation:floatOrb 10s ease-in-out infinite reverse; }
+    @keyframes floatOrb { 0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)} }
+    .hero-tag { display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:500; color:var(--clr-accent); background:rgba(79,255,176,0.08); border:1px solid rgba(79,255,176,0.2); padding:0.3rem 1rem; border-radius:50px; }
+    .dot-blink { width:7px; height:7px; background:var(--clr-accent); border-radius:50%; animation:blinkPulse 1.5s ease-in-out infinite; }
+    @keyframes blinkPulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(79,255,176,0.5)}50%{opacity:0.6;box-shadow:0 0 0 6px rgba(79,255,176,0)} }
+    .hero-title { font-size:clamp(2.5rem,6vw,4.5rem); font-weight:800; line-height:1.05; letter-spacing:-2px; }
+    .hero-role { background:linear-gradient(135deg,var(--clr-accent2),var(--clr-accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .hero-desc { font-size:1.05rem; color:var(--clr-muted); max-width:500px; line-height:1.8; }
+    .btn-primary-custom { background:linear-gradient(135deg,var(--clr-accent),var(--clr-accent2)); color:#000!important; font-weight:700; font-family:var(--font-display); padding:0.75rem 2rem; border-radius:50px; border:none; font-size:0.95rem; transition:var(--transition); display:inline-flex; align-items:center; gap:6px; }
+    .btn-primary-custom:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(79,255,176,0.35); }
+    .btn-ghost-custom { background:transparent; color:var(--clr-text)!important; font-weight:600; font-family:var(--font-display); padding:0.75rem 2rem; border-radius:50px; border:1px solid var(--clr-border); font-size:0.95rem; transition:var(--transition); display:inline-flex; align-items:center; }
+    .btn-ghost-custom:hover { border-color:var(--clr-accent); color:var(--clr-accent)!important; background:rgba(79,255,176,0.05); transform:translateY(-3px); }
+    .social-link { display:flex; align-items:center; justify-content:center; width:42px; height:42px; border-radius:12px; border:1px solid var(--clr-border); color:var(--clr-muted); font-size:1.1rem; transition:var(--transition); background:var(--clr-surface); }
+    .social-link:hover { border-color:var(--clr-accent); color:var(--clr-accent); transform:translateY(-4px); box-shadow:0 8px 20px rgba(79,255,176,0.15); }
+    .hero-card-wrap { position:relative; display:flex; justify-content:center; align-items:center; padding:2rem; }
+    .hero-img-ring { width:300px; height:300px; border-radius:50%; background:linear-gradient(135deg,var(--clr-accent),var(--clr-accent2)); padding:4px; box-shadow:0 0 60px rgba(79,255,176,0.2); animation:ringGlow 4s ease-in-out infinite; }
+    @keyframes ringGlow { 0%,100%{box-shadow:0 0 60px rgba(79,255,176,0.2)}50%{box-shadow:0 0 90px rgba(0,184,255,0.3)} }
+    .hero-profile-img { width:100%; height:100%; border-radius:50%; object-fit:cover; background:var(--clr-card); }
+    .float-badge { position:absolute; background:var(--clr-card); border:1px solid var(--clr-border); border-radius:14px; padding:0.6rem 1.1rem; font-size:0.82rem; font-weight:600; color:var(--clr-text); display:flex; align-items:center; box-shadow:0 8px 30px rgba(0,0,0,0.4); white-space:nowrap; }
+    .float-badge i { color:var(--clr-accent); }
+    .badge-exp { bottom:30px; left:0px; animation:floatBadge 3s ease-in-out infinite; }
+    .badge-proj { top:20px; right:0px; animation:floatBadge 3s ease-in-out infinite 1.5s; }
+    @keyframes floatBadge { 0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)} }
+    .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; font-size:0.7rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--clr-muted); }
+    .scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,var(--clr-muted),transparent); animation:scrollAnim 2s ease-in-out infinite; }
+    @keyframes scrollAnim { 0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom} }
+
+    /* ── ABOUT ── */
+    .about-section { background:var(--clr-surface); border-top:1px solid var(--clr-border); border-bottom:1px solid var(--clr-border); padding:6rem 0; }
+    .about-img-wrapper { position:relative; display:inline-block; width:100%; max-width:340px; }
+    .about-img { width:100%; border-radius:var(--radius); border:1px solid var(--clr-border); background:var(--clr-card); display:block; }
+    .about-img-decoration { position:absolute; top:18px; left:18px; width:100%; height:100%; border:2px solid var(--clr-accent); border-radius:var(--radius); z-index:-1; opacity:0.25; }
+    .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem 1.5rem; }
+    .info-item { display:flex; flex-direction:column; gap:2px; padding:0.6rem 0; border-bottom:1px solid var(--clr-border); }
+    .info-label { font-size:0.72rem; text-transform:uppercase; letter-spacing:1px; color:var(--clr-muted); font-weight:500; }
+    .info-value { font-size:0.9rem; font-weight:600; color:var(--clr-heading); }
+    .about-desc { font-size:1rem; color:var(--clr-muted); line-height:1.9; }
+    .skills-heading { font-size:1.1rem; font-weight:700; color:var(--clr-heading); }
+    .skill-name { font-size:0.88rem; font-weight:500; color:var(--clr-text); }
+    .skill-pct { font-size:0.82rem; font-weight:700; color:var(--clr-accent); }
+    .skill-progress { height:6px!important; background:var(--clr-border)!important; border-radius:50px!important; overflow:visible!important; }
+    .skill-progress .progress-bar { border-radius:50px!important; transition:width 1.5s cubic-bezier(0.4,0,0.2,1)!important; }
+    .experience-timeline { position:relative; padding-left:2rem; }
+    .experience-timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background:linear-gradient(to bottom,var(--clr-accent),var(--clr-accent2),transparent); border-radius:2px; }
+    .exp-item { position:relative; margin-bottom:2rem; }
+    .exp-dot { position:absolute; left:-1.9rem; top:6px; width:14px; height:14px; border-radius:50%; background:var(--clr-accent); border:3px solid var(--clr-surface); box-shadow:0 0 12px rgba(79,255,176,0.5); }
+    .exp-period { display:inline-block; font-size:0.73rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--clr-accent); background:rgba(79,255,176,0.1); padding:0.2rem 0.7rem; border-radius:50px; margin-bottom:0.4rem; }
+    .exp-title { font-size:1rem; font-weight:700; color:var(--clr-heading); margin:0.3rem 0; }
+    .exp-company { font-size:0.85rem; color:var(--clr-accent2); margin:0 0 0.4rem; }
+    .exp-desc { font-size:0.88rem; color:var(--clr-muted); margin:0; line-height:1.7; }
+
+    /* ── CERTIFICATES ── */
+    .cert-section { background:var(--clr-bg); padding:6rem 0; }
+    .btn-filter { background:var(--clr-card); color:var(--clr-muted); border:1px solid var(--clr-border); font-size:0.82rem; font-weight:600; padding:0.45rem 1.2rem; border-radius:50px; transition:var(--transition); font-family:var(--font-body); }
+    .btn-filter:hover, .btn-filter.active { background:var(--clr-accent); color:#000!important; border-color:var(--clr-accent); box-shadow:0 6px 20px rgba(79,255,176,0.25); }
+    .cert-card { background:var(--clr-card); border:1px solid var(--clr-border); border-radius:var(--radius); overflow:hidden; transition:var(--transition); display:flex; flex-direction:column; }
+    .cert-card:hover { transform:translateY(-8px); border-color:rgba(79,255,176,0.3); box-shadow:0 20px 50px rgba(0,0,0,0.4); }
+    .cert-card-top { position:relative; padding:2.5rem 2rem; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .cert-card-top::before { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.3); }
+    .cert-icon { font-size:3rem; color:#fff; position:relative; z-index:1; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4)); }
+    .cert-category-badge { position:absolute; top:12px; right:12px; font-size:0.65rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#fff; background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); padding:0.25rem 0.7rem; border-radius:50px; z-index:1; }
+    .cert-card-body { padding:1.5rem; flex:1; display:flex; flex-direction:column; }
+    .cert-title { font-size:0.95rem; font-weight:700; color:var(--clr-heading); margin-bottom:0.6rem; line-height:1.4; }
+    .cert-issuer, .cert-date { font-size:0.8rem; color:var(--clr-muted); margin:0 0 0.3rem; }
+    .cert-issuer i { color:var(--clr-accent); }
+    .cert-date i { color:var(--clr-accent2); }
+    .btn-cert-view { display:inline-flex; align-items:center; gap:5px; font-size:0.8rem; font-weight:600; color:var(--clr-accent)!important; background:rgba(79,255,176,0.08); border:1px solid rgba(79,255,176,0.2); padding:0.45rem 1rem; border-radius:8px; transition:var(--transition); margin-top:auto; align-self:flex-start; }
+    .btn-cert-view:hover { background:var(--clr-accent); color:#000!important; border-color:var(--clr-accent); }
+
+    /* ── FOOTER ── */
+    .site-footer { background:var(--clr-surface); border-top:1px solid var(--clr-border); }
+    .footer-brand { font-family:var(--font-display); font-size:1.4rem; font-weight:800; color:var(--clr-heading); letter-spacing:-1px; }
+    .footer-copy { font-size:0.82rem; color:var(--clr-muted); }
+    .footer-links a { color:var(--clr-muted); font-size:0.82rem; transition:var(--transition); }
+    .footer-links a:hover { color:var(--clr-accent); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:992px){
+      .hero-img-ring{width:250px;height:250px}
+      .badge-exp{bottom:10px;left:0}
+      .badge-proj{top:10px;right:0}
+    }
+    @media(max-width:768px){
+      .about-section,.cert-section{padding:4rem 0}
+      .hero-title{letter-spacing:-1px}
+      .info-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:576px){
+      .hero-cta{flex-direction:column}
+      .cert-filter{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Vue app mount point -->
+<div id="app">
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">
+        <span class="brand-dot"></span>{{ brand }}<span class="brand-accent">.</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <i class="bi bi-list" style="color:var(--clr-text);font-size:1.4rem"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-1 align-items-lg-center">
+          <li class="nav-item" v-for="link in navLinks" :key="link.href">
+            <a class="nav-link" :href="link.href">{{ link.label }}</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-hire" href="mailto:pebe@example.com">Hire Me</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO SECTION (Home) ===================== -->
+  <section id="home" class="hero-section">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+
+    <div class="container">
+      <div class="row align-items-center min-vh-100 py-5">
+
+        <!-- Left: Text -->
+        <div class="col-lg-7">
+          <div class="hero-tag mb-3">
+            <span class="dot-blink"></span> {{ statusTag }}
+          </div>
+          <h1 class="hero-title">
+            Hi, I'm <span class="highlight">{{ name }}</span><br/>
+            <span class="hero-role">{{ role }}</span>
+          </h1>
+          <p class="hero-desc mt-4">{{ tagline }}</p>
+          <div class="hero-cta mt-5 d-flex gap-3 flex-wrap">
+            <a href="#certificates" class="btn btn-primary-custom">
+              View My Work <i class="bi bi-arrow-right"></i>
+            </a>
+            <a href="#about" class="btn btn-ghost-custom">About Me</a>
+          </div>
+          <div class="mt-5 d-flex gap-3">
+            <a v-for="s in socials" :key="s.icon" :href="s.url" class="social-link" target="_blank">
+              <i :class="'bi bi-' + s.icon"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Image -->
+        <div class="col-lg-5 mt-5 mt-lg-0 text-center">
+          <div class="hero-card-wrap">
+            <div class="hero-img-ring">
+              <img :src="profileImage" :alt="'Photo of ' + name" class="hero-profile-img"/>
+            </div>
+            <div class="float-badge badge-exp">
+              <i class="bi bi-star-fill me-2"></i>{{ yearsExp }}+ Yrs Exp
+            </div>
+            <div class="float-badge badge-proj">
+              <i class="bi bi-folder2-open me-2"></i>{{ projectCount }} Projects
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll Down</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ME SECTION ===================== -->
+  <section id="about" class="about-section">
+    <div class="container py-5">
+      <div class="section-header mb-5">
+        <span class="section-tag">Get to know me</span>
+        <h2 class="section-title">About <span class="highlight">Me</span></h2>
+      </div>
+
+      <div class="row g-5 align-items-start">
+
+        <!-- Left: Image + Info -->
+        <div class="col-lg-5">
+          <div class="about-img-wrapper mb-4">
+            <img :src="aboutImage" alt="About Me" class="about-img"/>
+            <div class="about-img-decoration"></div>
+          </div>
+          <div class="info-grid">
+            <div class="info-item" v-for="info in personalInfo" :key="info.label">
+              <span class="info-label">{{ info.label }}</span>
+              <span class="info-value">{{ info.value }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Bio, Skills, Experience -->
+        <div class="col-lg-7">
+          <p class="about-desc">{{ aboutDesc }}</p>
+
+          <!-- Skills with Bootstrap Progress Bars -->
+          <h4 class="skills-heading mt-5 mb-4">Technical Skills</h4>
+          <div v-for="skill in skills" :key="skill.name" class="mb-3">
+            <div class="d-flex justify-content-between mb-1">
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-pct">{{ skill.pct }}%</span>
+            </div>
+            <div class="progress skill-progress" role="progressbar" :aria-valuenow="skill.pct" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" :style="{ width: skill.pct + '%', background: skill.color }"></div>
+            </div>
+          </div>
+
+          <!-- Experience Timeline -->
+          <h4 class="skills-heading mt-5 mb-4">Experience</h4>
+          <div class="experience-timeline">
+            <div class="exp-item" v-for="exp in experience" :key="exp.title">
+              <div class="exp-dot"></div>
+              <div class="exp-body">
+                <span class="exp-period">{{ exp.period }}</span>
+                <h5 class="exp-title">{{ exp.title }}</h5>
+                <p class="exp-company"><i class="bi bi-building me-1"></i>{{ exp.company }}</p>
+                <p class="exp-desc">{{ exp.desc }}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CERTIFICATES SECTION ===================== -->
+  <section id="certificates" class="cert-section">
+    <div class="container py-5">
+      <div class="section-header mb-5">
+        <span class="section-tag">Achievements</span>
+        <h2 class="section-title">My <span class="highlight">Certificates</span></h2>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="d-flex gap-2 flex-wrap justify-content-center mb-5">
+        <button
+          v-for="cat in certCategories"
+          :key="cat"
+          class="btn btn-filter"
+          :class="{ active: activeCategory === cat }"
+          @click="activeCategory = cat"
+        >{{ cat }}</button>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="row g-4">
+        <div v-for="cert in filteredCerts" :key="cert.title" class="col-sm-6 col-lg-4">
+          <div class="cert-card h-100">
+            <div class="cert-card-top" :style="{ background: cert.gradient }">
+              <i :class="'bi bi-' + cert.icon + ' cert-icon'"></i>
+              <span class="cert-category-badge">{{ cert.category }}</span>
+            </div>
+            <div class="cert-card-body">
+              <h5 class="cert-title">{{ cert.title }}</h5>
+              <p class="cert-issuer"><i class="bi bi-award me-1"></i>{{ cert.issuer }}</p>
+              <p class="cert-date"><i class="bi bi-calendar3 me-1"></i>{{ cert.date }}</p>
+              <a :href="cert.link" target="_blank" class="btn btn-cert-view mt-2">
+                View Certificate <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="filteredCerts.length === 0" class="text-center py-5">
+        <i class="bi bi-emoji-frown fs-1 mb-3 d-block" style="color:var(--clr-muted)"></i>
+        <p style="color:var(--clr-muted)">No certificates in this category yet.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row align-items-center py-4">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          <span class="footer-brand">PEBE<span class="brand-accent">.</span></span>
+          <p class="footer-copy mt-1 mb-0">© {{ currentYear }} {{ name }}. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="footer-links d-flex gap-3 justify-content-center justify-content-md-end">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#certificates">Certificates</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- #app -->
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Vue 3 CDN -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+const { createApp } = Vue
+
+createApp({
+  data() {
+    return {
+      // ── Navbar ──
+      brand: 'PEBE',
+      navLinks: [
+        { label: 'Home',         href: '#home' },
+        { label: 'About Me',     href: '#about' },
+        { label: 'Certificates', href: '#certificates' },
+      ],
+
+      // ── Hero ──
+      name:         'Pebe Weiii',
+      role:         'Frontend Developer',
+      tagline:      'I craft beautiful and performant web experiences using modern technologies like Vue JS, React, and cutting-edge CSS. Passionate about clean code and creative interfaces.',
+      statusTag:    'Available for work',
+      profileImage: 'https://api.dicebear.com/9.x/avataaars/svg?seed=pebe&backgroundColor=0d1117&top=shortHair&accessories=prescription01&clothesColor=3c4f5c&radius=50',
+      yearsExp:     3,
+      projectCount: 20,
+      socials: [
+        { icon: 'github',    url: 'https://github.com/' },
+        { icon: 'linkedin',  url: 'https://linkedin.com/' },
+        { icon: 'instagram', url: 'https://instagram.com/' },
+        { icon: 'envelope',  url: 'mailto:pebe@example.com' },
+      ],
+
+      // ── About ──
+      aboutImage: 'https://api.dicebear.com/9.x/avataaars/svg?seed=pebe3&backgroundColor=162032&top=longHair&accessories=kurt&clothesColor=5c3c4f&radius=12',
+      aboutDesc: 'I am a passionate Frontend Developer with 3+ years of experience building modern, responsive, and user-friendly web applications. I specialize in Vue JS, React, and enjoy bridging creative design with clean, maintainable code. When I\'m not coding, I\'m exploring UI design trends and contributing to open-source projects.',
+      personalInfo: [
+        { label: 'Name',      value: 'Pebe Weiii' },
+        { label: 'Location',  value: 'Kalimantan, ID' },
+        { label: 'Degree',    value: 'S1 Informatika' },
+        { label: 'Email',     value: 'pebe@example.com' },
+        { label: 'Freelance', value: 'Available' },
+        { label: 'Languages', value: 'ID, EN' },
+      ],
+      skills: [
+        { name: 'HTML & CSS',    pct: 92, color: 'linear-gradient(90deg,#ff6b6b,#feca57)' },
+        { name: 'Vue JS',        pct: 85, color: 'linear-gradient(90deg,#4fffb0,#00b8ff)' },
+        { name: 'JavaScript',    pct: 80, color: 'linear-gradient(90deg,#f7df1e,#ff9f43)' },
+        { name: 'Bootstrap 5',   pct: 88, color: 'linear-gradient(90deg,#7c3aed,#a78bfa)' },
+        { name: 'React',         pct: 72, color: 'linear-gradient(90deg,#00b8ff,#0984e3)' },
+        { name: 'Figma / UI/UX', pct: 70, color: 'linear-gradient(90deg,#fd79a8,#e84393)' },
+      ],
+      experience: [
+        { period:'2023 – Present', title:'Frontend Developer',      company:'Tech Startup — Balikpapan', desc:'Building responsive web apps with Vue JS and Nuxt. Leading UI architecture decisions and conducting code reviews.' },
+        { period:'2022 – 2023',    title:'Junior Web Developer',     company:'Digital Agency — Samarinda', desc:'Developed landing pages and e-commerce templates using Bootstrap 5. Collaborated with UI designers for pixel-perfect interfaces.' },
+        { period:'2021 – 2022',    title:'Internship — Frontend Dev', company:'PT. Kreasi Digital', desc:'Assisted in building internal dashboards using HTML, CSS, and vanilla JavaScript. Gained hands-on Git workflow experience.' },
+      ],
+
+      // ── Certificates ──
+      activeCategory: 'All',
+      certificates: [
+        { title:'Front-End Web Development Fundamentals', issuer:'Dicoding Indonesia', date:'Maret 2024',    category:'Web Dev', icon:'code-slash',     gradient:'linear-gradient(135deg,#1a1a2e,#0f3460)',  link:'#' },
+        { title:'Vue JS – The Complete Guide',            issuer:'Udemy',              date:'Januari 2024',  category:'Vue JS',  icon:'layers',          gradient:'linear-gradient(135deg,#0d2137,#1a4a3a)',  link:'#' },
+        { title:'Bootstrap 5 Mastery Course',             issuer:'Coursera',           date:'November 2023', category:'CSS',     icon:'grid-1x2-fill',   gradient:'linear-gradient(135deg,#2d0a6b,#5a189a)',  link:'#' },
+        { title:'JavaScript Algorithms & Data Structures',issuer:'freeCodeCamp',       date:'September 2023',category:'Web Dev', icon:'braces',          gradient:'linear-gradient(135deg,#1a2600,#2d4a00)',  link:'#' },
+        { title:'UI/UX Design Essentials with Figma',     issuer:'Dicoding Indonesia', date:'Juli 2023',     category:'Design',  icon:'palette2',        gradient:'linear-gradient(135deg,#3d0030,#6d003a)',  link:'#' },
+        { title:'Responsive Web Design Certification',    issuer:'freeCodeCamp',       date:'Mei 2023',      category:'CSS',     icon:'phone',           gradient:'linear-gradient(135deg,#001a3d,#003080)',  link:'#' },
+        { title:'Git & GitHub for Beginners',             issuer:'Udemy',              date:'April 2023',    category:'DevOps',  icon:'git',             gradient:'linear-gradient(135deg,#1a0a00,#3d1c00)',  link:'#' },
+        { title:'Google Analytics Certification',         issuer:'Google',             date:'Februari 2023', category:'Design',  icon:'bar-chart-line',  gradient:'linear-gradient(135deg,#001a1a,#003d3d)',  link:'#' },
+        { title:'Node.js & Express Backend Basics',       issuer:'Coursera',           date:'Desember 2022', category:'DevOps',  icon:'server',          gradient:'linear-gradient(135deg,#0a1a00,#1a3300)',  link:'#' },
+      ],
+
+      // ── Footer ──
+      currentYear: new Date().getFullYear(),
+    }
+  },
+
+  computed: {
+    certCategories() {
+      return ['All', ...new Set(this.certificates.map(c => c.category))]
+    },
+    filteredCerts() {
+      if (this.activeCategory === 'All') return this.certificates
+      return this.certificates.filter(c => c.category === this.activeCategory)
+    },
+  },
+}).mount('#app')
+</script>
+</body>
+</html>
