@@ -31,17 +31,11 @@ This project demonstrates:
 
 # 🖼️ Live Preview
 
-<p align="center">
-  <img width="100%" src="https://github.com/user-attachments/assets/ef8dd368-e1b5-4795-9bec-c74befecd860" />
-</p>
-
-<p align="center">
-  <img width="100%" src="https://github.com/user-attachments/assets/341b7421-df1a-4cf3-9d48-4245bfe9f434" />
-</p>
-
-<p align="center">
-  <img width="100%" src="https://github.com/user-attachments/assets/772f289a-2243-4321-97ee-bd90eda864a4" />
-</p>
+<img width="1917" alt="preview1" src="https://github.com/user-attachments/assets/ef8dd368-e1b5-4795-9bec-c74befecd860" />
+<img width="1918" alt="preview2" src="https://github.com/user-attachments/assets/341b7421-df1a-4cf3-9d48-4245bfe9f434" />
+<img width="1920" alt="preview3" src="https://github.com/user-attachments/assets/772f289a-2243-4321-97ee-bd90eda864a4" />
+<img width="1920" alt="preview4" src="https://github.com/user-attachments/assets/65994724-e1dc-4cf0-915e-23483a144ff7" />
+<img width="1920" alt="preview5" src="https://github.com/user-attachments/assets/71c99402-3047-492b-afa2-fc1122a60619" />
 
 ---
 
