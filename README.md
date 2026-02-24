@@ -115,3 +115,44 @@ PEBEWEIII_MINPRO1/
 ```
 
 ---
+
+## ⚙️ Cara Menjalankan
+
+### Dengan Vite (development):
+```bash
+npm install
+npm run dev
+```
+Buka `http://localhost:5173`
+
+### Tanpa npm (langsung buka):
+Buka file `preview.html` langsung di browser — sudah menggunakan CDN untuk Vue 3 dan Bootstrap 5.
+
+---
+
+## ✨ Fitur Vue JS yang Digunakan
+
+| Fitur | Contoh Penggunaan |
+|---|---|
+| `{{ interpolation }}` | `{{ name }}`, `{{ role }}`, `{{ cert.title }}` |
+| `v-for` | Render navLinks, socials, skills, experience, certificates |
+| `v-if` | Tampilkan empty state jika filteredCerts kosong |
+| `:class` (v-bind) | Active state pada filter button |
+| `:style` (v-bind) | Dynamic width & color pada progress bar |
+| `@click` (v-on) | Filter category selection |
+| `computed` | `filteredCerts`, `certCategories` |
+| `data()` | Semua data statis (nama, skills, certificates, dll) |
+| `.mount('#app')` | Menghubungkan Vue ke DOM element |
+| `components: {}` | Registrasi child components di App.vue |
+
+---
+
+## ✨ Fitur Bootstrap 5 yang Digunakan
+
+- `navbar`, `navbar-expand-lg`, `navbar-brand`, `navbar-toggler`, `collapse`
+- `container`, `row`, `col-*`, `col-sm-*`, `col-lg-*` (Grid System)
+- `d-flex`, `gap-*`, `justify-content-*`, `align-items-*`
+- `progress`, `progress-bar` (Skills)
+- `btn`, `btn-*` (CTA buttons, filter)
+- `h-100`, `mt-*`, `mb-*`, `py-*`, `ms-auto` (Spacing utilities)
+- Responsive breakpoints: `sm`, `lg`, `md`
