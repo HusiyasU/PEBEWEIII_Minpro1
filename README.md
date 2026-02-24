@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">🌌 Modern Portfolio Website</h1>
+  <h1 align="center">🌌 MY Portfolio Website GW</h1>
   <p align="center">
     Built with Vue 3 + Bootstrap 5 <br/>
     Clean • Animated • Responsive • Professional
